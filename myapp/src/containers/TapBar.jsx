@@ -1,5 +1,3 @@
-import { StyleSheet, Text, View } from "react-native";
-
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   AntDesign,
@@ -9,7 +7,7 @@ import {
 } from "@expo/vector-icons";
 
 import Home from "../page/Home";
-import Calendar from "../page/Calendar";
+import Calendar from "../page/calendar/Calendar";
 import Library from "../page/Library";
 import MyPage from "../page/MyPage";
 
