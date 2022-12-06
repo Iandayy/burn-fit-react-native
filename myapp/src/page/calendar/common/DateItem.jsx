@@ -2,12 +2,19 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 import shortid from "shortid";
 
-const DateItem = ({ day, allDate, currentDate, setCurrentDate }) => {
+const DateItem = ({ day, today, dates, currentDate, setCurrentDate }) => {
   return (
     <View style={styles.numDay}>
-      {allDate.map((date) => (
+      {dates.map((date) => (
         <TouchableOpacity
-          style={styles.numBtn}
+          style={{
+            ...styles.numBtn,
+            borderWidth:
+              `${day.year}-${day.month}-${date}` === currentDate && 1,
+            borderRadius: 20,
+            borderColor:
+              `${day.year}-${day.month}-${date}` === currentDate && "#0077b6",
+          }}
           key={shortid.generate()}
           onPress={() => setCurrentDate(`${day.year}-${day.month}-${date}`)}
         >
@@ -15,13 +22,10 @@ const DateItem = ({ day, allDate, currentDate, setCurrentDate }) => {
             style={{
               ...styles.numText,
               fontWeight:
-                `${day.year}-${day.month}-${date}` === currentDate && "800",
+                `${day.year}-${day.month}-${date}` === currentDate
+                  ? "800"
+                  : date === today.getDate() && "800",
               color: date === "X" && "gray",
-              borderWidth:
-                `${day.year}-${day.month}-${date}` === currentDate && 1,
-              borderRadius: 10,
-              borderColor:
-                `${day.year}-${day.month}-${date}` === currentDate && "#0077b6",
             }}
             key={shortid.generate()}
           >
