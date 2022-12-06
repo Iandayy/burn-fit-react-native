@@ -22,7 +22,7 @@ const Week = () => {
 const styles = StyleSheet.create({
   week: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
   weekText: {},
 });

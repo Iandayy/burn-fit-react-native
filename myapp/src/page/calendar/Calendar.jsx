@@ -17,7 +17,7 @@ const Calendar = () => {
     <View style={styles.main}>
       <Month day={day} setDay={setDay} />
       <Week />
-      <Dates day={day} />
+      <Dates day={day} today={today} />
     </View>
   );
 };
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     marginTop: 50,
-    marginHorizontal: 5,
+    marginHorizontal: 10,
   },
 });
 
