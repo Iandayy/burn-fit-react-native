@@ -72,6 +72,13 @@ const Dates = ({ day, today }) => {
                       `${day.year}-${day.month}-week1-${date}` ===
                         currentDate && "800",
                     color: date === "X" && "gray",
+                    borderWidth:
+                      `${day.year}-${day.month}-week1-${date}` ===
+                        currentDate && 1,
+                    borderRadius: 10,
+                    borderColor:
+                      `${day.year}-${day.month}-week1-${date}` ===
+                        currentDate && "#0077b6",
                   }}
                   key={shortid.generate()}
                 >
@@ -95,6 +102,13 @@ const Dates = ({ day, today }) => {
                       `${day.year}-${day.month}-week2-${date}` ===
                         currentDate && "800",
                     color: date === "X" && "gray",
+                    borderWidth:
+                      `${day.year}-${day.month}-week2-${date}` ===
+                        currentDate && 1,
+                    borderRadius: 10,
+                    borderColor:
+                      `${day.year}-${day.month}-week2-${date}` ===
+                        currentDate && "#0077b6",
                   }}
                   key={shortid.generate()}
                 >
@@ -118,6 +132,13 @@ const Dates = ({ day, today }) => {
                       `${day.year}-${day.month}-week3-${date}` ===
                         currentDate && "800",
                     color: date === "X" && "gray",
+                    borderWidth:
+                      `${day.year}-${day.month}-week3-${date}` ===
+                        currentDate && 1,
+                    borderRadius: 10,
+                    borderColor:
+                      `${day.year}-${day.month}-week3-${date}` ===
+                        currentDate && "#0077b6",
                   }}
                   key={shortid.generate()}
                 >
@@ -141,6 +162,13 @@ const Dates = ({ day, today }) => {
                       `${day.year}-${day.month}-week4-${date}` ===
                         currentDate && "800",
                     color: date === "X" && "gray",
+                    borderWidth:
+                      `${day.year}-${day.month}-week4-${date}` ===
+                        currentDate && 1,
+                    borderRadius: 10,
+                    borderColor:
+                      `${day.year}-${day.month}-week4-${date}` ===
+                        currentDate && "#0077b6",
                   }}
                   key={shortid.generate()}
                 >
@@ -164,6 +192,13 @@ const Dates = ({ day, today }) => {
                       `${day.year}-${day.month}-week5-${date}` ===
                         currentDate && "800",
                     color: date === "X" && "gray",
+                    borderWidth:
+                      `${day.year}-${day.month}-week5-${date}` ===
+                        currentDate && 1,
+                    borderRadius: 10,
+                    borderColor:
+                      `${day.year}-${day.month}-week5-${date}` ===
+                        currentDate && "#0077b6",
                   }}
                   key={shortid.generate()}
                 >
@@ -187,6 +222,13 @@ const Dates = ({ day, today }) => {
                       `${day.year}-${day.month}-week6-${date}` ===
                         currentDate && "800",
                     color: date === "X" && "gray",
+                    borderWidth:
+                      `${day.year}-${day.month}-week6-${date}` ===
+                        currentDate && 1,
+                    borderRadius: 10,
+                    borderColor:
+                      `${day.year}-${day.month}-week6-${date}` ===
+                        currentDate && "#0077b6",
                   }}
                   key={shortid.generate()}
                 >
@@ -210,7 +252,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 10,
+    padding: 5,
   },
   numBtn: { borderWidth: 1, borderRadius: 20, padding: 5 },
   numText: {
