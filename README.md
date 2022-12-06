@@ -11,7 +11,6 @@
 ```sh
 git clone https://github.com/Iandayy/burn-fit-react-native
 
-
 cd myapp
 npm install
 npm start
