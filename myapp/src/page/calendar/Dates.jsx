@@ -1,13 +1,7 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  ActivityIndicator,
-  TouchableOpacity,
-} from "react-native";
-
+import { StyleSheet, View, ActivityIndicator } from "react-native";
 import { useState, useEffect } from "react";
-import shortid from "shortid";
+
+import DateItem from "./common/DateItem";
 
 const Dates = ({ day, today }) => {
   const [allDate, setAllDate] = useState({});
@@ -17,226 +11,71 @@ const Dates = ({ day, today }) => {
     const firstDay = parseInt(new Date(day.year, day.month - 1, 2).getDay());
     const lastDate = parseInt(new Date(day.year, day.month, 0).getDate());
 
-    const num_dates = {
-      week1: [],
-      week2: [],
-      week3: [],
-      week4: [],
-      week5: [],
-      week6: [],
-    };
+    const num_dates = [];
 
     for (let i = 1; i < firstDay + lastDate; i++) {
-      if (i < firstDay) num_dates.week1.push("X");
-      if (i >= firstDay && i <= 7) num_dates.week1.push(i - firstDay + 1);
-      if (i > 7 && i <= 14) num_dates.week2.push(i - firstDay + 1);
-      if (i > 14 && i <= 21) num_dates.week3.push(i - firstDay + 1);
-      if (i > 21 && i <= 28) num_dates.week4.push(i - firstDay + 1);
-      if (i > 28 && i <= 35) num_dates.week5.push(i - firstDay + 1);
-      if (i > 35 && i <= firstDay + lastDate)
-        num_dates.week6.push(i - firstDay + 1);
+      if (i < firstDay) num_dates.push("X");
+      if (i >= firstDay && i <= firstDay + lastDate)
+        num_dates.push(i - firstDay + 1);
     }
 
-    let j = 7 - num_dates.week5.length;
+    let j = 42 - num_dates.length;
     while (j > 0) {
-      num_dates.week5.push("X");
+      num_dates.push("X");
       j--;
     }
 
-    let k = 7 - num_dates.week6.length;
-    while (k > 0) {
-      num_dates.week6.push("X");
-      k--;
+    const slice_dates = [];
+
+    for (let k = 0; k < num_dates.length; k++) {
+      if ((k + 7) % 7 === 0) slice_dates.push(num_dates.slice(k, k + 7));
     }
 
-    setAllDate(num_dates);
+    setAllDate(slice_dates);
   }, [day]);
 
   return (
     <View style={styles.main}>
-      {Object.keys(allDate).length === 0 && <ActivityIndicator />}
-      {Object.keys(allDate).length > 0 && (
-        <View style={styles.numdays}>
-          <View style={styles.numday}>
-            {allDate.week1.map((date) => (
-              <TouchableOpacity
-                key={shortid.generate()}
-                onPress={() =>
-                  setCurrentDate(`${day.year}-${day.month}-week1-${date}`)
-                }
-              >
-                <Text
-                  style={{
-                    ...styles.numText,
-                    fontWeight:
-                      `${day.year}-${day.month}-week1-${date}` ===
-                        currentDate && "800",
-                    color: date === "X" && "gray",
-                    borderWidth:
-                      `${day.year}-${day.month}-week1-${date}` ===
-                        currentDate && 1,
-                    borderRadius: 10,
-                    borderColor:
-                      `${day.year}-${day.month}-week1-${date}` ===
-                        currentDate && "#0077b6",
-                  }}
-                  key={shortid.generate()}
-                >
-                  {date}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-          <View style={styles.numday}>
-            {allDate.week2.map((date) => (
-              <TouchableOpacity
-                key={shortid.generate()}
-                onPress={() =>
-                  setCurrentDate(`${day.year}-${day.month}-week2-${date}`)
-                }
-              >
-                <Text
-                  style={{
-                    ...styles.numText,
-                    fontWeight:
-                      `${day.year}-${day.month}-week2-${date}` ===
-                        currentDate && "800",
-                    color: date === "X" && "gray",
-                    borderWidth:
-                      `${day.year}-${day.month}-week2-${date}` ===
-                        currentDate && 1,
-                    borderRadius: 10,
-                    borderColor:
-                      `${day.year}-${day.month}-week2-${date}` ===
-                        currentDate && "#0077b6",
-                  }}
-                  key={shortid.generate()}
-                >
-                  {date}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-          <View style={styles.numday}>
-            {allDate.week3.map((date) => (
-              <TouchableOpacity
-                key={shortid.generate()}
-                onPress={() =>
-                  setCurrentDate(`${day.year}-${day.month}-week3-${date}`)
-                }
-              >
-                <Text
-                  style={{
-                    ...styles.numText,
-                    fontWeight:
-                      `${day.year}-${day.month}-week3-${date}` ===
-                        currentDate && "800",
-                    color: date === "X" && "gray",
-                    borderWidth:
-                      `${day.year}-${day.month}-week3-${date}` ===
-                        currentDate && 1,
-                    borderRadius: 10,
-                    borderColor:
-                      `${day.year}-${day.month}-week3-${date}` ===
-                        currentDate && "#0077b6",
-                  }}
-                  key={shortid.generate()}
-                >
-                  {date}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-          <View style={styles.numday}>
-            {allDate.week4.map((date) => (
-              <TouchableOpacity
-                key={shortid.generate()}
-                onPress={() =>
-                  setCurrentDate(`${day.year}-${day.month}-week4-${date}`)
-                }
-              >
-                <Text
-                  style={{
-                    ...styles.numText,
-                    fontWeight:
-                      `${day.year}-${day.month}-week4-${date}` ===
-                        currentDate && "800",
-                    color: date === "X" && "gray",
-                    borderWidth:
-                      `${day.year}-${day.month}-week4-${date}` ===
-                        currentDate && 1,
-                    borderRadius: 10,
-                    borderColor:
-                      `${day.year}-${day.month}-week4-${date}` ===
-                        currentDate && "#0077b6",
-                  }}
-                  key={shortid.generate()}
-                >
-                  {date}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-          <View style={styles.numday}>
-            {allDate.week5.map((date) => (
-              <TouchableOpacity
-                key={shortid.generate()}
-                onPress={() =>
-                  setCurrentDate(`${day.year}-${day.month}-week5-${date}`)
-                }
-              >
-                <Text
-                  style={{
-                    ...styles.numText,
-                    fontWeight:
-                      `${day.year}-${day.month}-week5-${date}` ===
-                        currentDate && "800",
-                    color: date === "X" && "gray",
-                    borderWidth:
-                      `${day.year}-${day.month}-week5-${date}` ===
-                        currentDate && 1,
-                    borderRadius: 10,
-                    borderColor:
-                      `${day.year}-${day.month}-week5-${date}` ===
-                        currentDate && "#0077b6",
-                  }}
-                  key={shortid.generate()}
-                >
-                  {date}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-          <View style={styles.numday}>
-            {allDate.week6.map((date) => (
-              <TouchableOpacity
-                key={shortid.generate()}
-                onPress={() =>
-                  setCurrentDate(`${day.year}-${day.month}-week6-${date}`)
-                }
-              >
-                <Text
-                  style={{
-                    ...styles.numText,
-                    fontWeight:
-                      `${day.year}-${day.month}-week6-${date}` ===
-                        currentDate && "800",
-                    color: date === "X" && "gray",
-                    borderWidth:
-                      `${day.year}-${day.month}-week6-${date}` ===
-                        currentDate && 1,
-                    borderRadius: 10,
-                    borderColor:
-                      `${day.year}-${day.month}-week6-${date}` ===
-                        currentDate && "#0077b6",
-                  }}
-                  key={shortid.generate()}
-                >
-                  {date}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+      {allDate.length === 0 && <ActivityIndicator />}
+      {allDate.length > 0 && (
+        <View style={styles.numDays}>
+          <DateItem
+            day={day}
+            allDate={allDate[0]}
+            currentDate={currentDate}
+            setCurrentDate={setCurrentDate}
+          />
+          <DateItem
+            day={day}
+            today={today}
+            allDate={allDate[1]}
+            currentDate={currentDate}
+            setCurrentDate={setCurrentDate}
+          />
+          <DateItem
+            day={day}
+            allDate={allDate[2]}
+            currentDate={currentDate}
+            setCurrentDate={setCurrentDate}
+          />
+          <DateItem
+            day={day}
+            allDate={allDate[3]}
+            currentDate={currentDate}
+            setCurrentDate={setCurrentDate}
+          />
+          <DateItem
+            day={day}
+            allDate={allDate[4]}
+            currentDate={currentDate}
+            setCurrentDate={setCurrentDate}
+          />
+          <DateItem
+            day={day}
+            allDate={allDate[5]}
+            currentDate={currentDate}
+            setCurrentDate={setCurrentDate}
+          />
         </View>
       )}
     </View>
@@ -244,22 +83,11 @@ const Dates = ({ day, today }) => {
 };
 
 const styles = StyleSheet.create({
-  main: { flex: 1 },
-  numdays: {
+  main: {
     flex: 1,
-  },
-  numday: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 5,
   },
-  numBtn: { borderWidth: 1, borderRadius: 20, padding: 5 },
-  numText: {
-    color: "black",
-    textAlign: "center",
-    padding: 5,
-  },
+  numDays: { flex: 1 },
 });
 
 export default Dates;
